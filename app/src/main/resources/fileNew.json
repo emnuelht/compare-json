@@ -1,0 +1,48 @@
+{
+    "usuario__tb01": {
+        "nome__cn01": {
+            "type": "Strinaaag",
+            "length": 50,
+            "default": "Sem Nome"
+        },
+        "email__cn02": {
+            "type": "String",
+            "length": 100,
+            "default": "sem@email.com"
+        },
+        "criado_em__cn03": {
+            "type": "Timestamp",
+            "length": "none",
+            "default": "CURRENT TIMESTAMP"
+        }
+    },
+    "produto__tb02": {
+        "descricao__cn04": {
+            "type": "String",
+            "length": 255,
+            "default": "Sem descrição"
+        },
+        "preco__cn05": {
+            "type": "Decimal",
+            "length": "10,2",
+            "default": "0.00"
+        },
+        "cadastrado_em__cn06": {
+            "type": "Timestamp",
+            "length": "none",
+            "default": "CURRENT TIMESTAMP"
+        }
+    },
+    "pedido__tb03": {
+        "id_usuario__cn07": {
+            "type": "Integer",
+            "length": 11,
+            "default": "0"
+        },
+        "data_pedido__cn08": {
+            "type": "Timestamp",
+            "length": "none",
+            "default": "CURRENT TIMESTAMP"
+        }
+    }
+}
