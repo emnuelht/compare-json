@@ -129,13 +129,13 @@ public class CompareJson {
             }
         }
         // Verificando novas linhas
-        if (listOld.size() < listNew.size()) {
-            for (int i = listOld.size(); i < listNew.size(); i++) {
-                String codTable = getCod(listNew.get(i),true)[0];
-                String codColumn = getCod(listNew.get(i),true)[1];
-                String nameTable = getCod(listNew.get(i),false)[0];
-                String nameColumn = getCod(listNew.get(i),false)[1];
-                String nameOption = codColumn+"."+getCod(listNew.get(i),false)[2];
+        for (String iNew : listNew) {
+            if (!listOld.contains(iNew)) {
+                String codTable = getCod(iNew,true)[0];
+                String codColumn = getCod(iNew,true)[1];
+                String nameTable = getCod(iNew,false)[0];
+                String nameColumn = getCod(iNew,false)[1];
+                String nameOption = codColumn+"."+getCod(iNew,false)[2];
                 // Adicionando a nova table
                 changeMap.put("change.new.table."+codTable, nameTable);
                 // Adicionando a nova column
