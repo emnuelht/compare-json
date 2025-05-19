@@ -95,13 +95,13 @@ public class CompareJson {
                 // Verificando se a table foi deletada
                 if (!codTablesNew.contains(codTable) && !deleted.contains(codTable)) {
                     deleted.add(codTable);
-                    changeMap.put("deleted.table."+codTable, codTable);
+                    changeMap.put("deleted.table."+codTable, nameTable);
                     continue;
                 }
                 // Verificando se uma column foi deletada
                 if (!codColumnsNew.contains(codColumn) && !deleted.contains(codColumn)) {
                     deleted.add(codColumn);
-                    changeMap.put("deleted.column."+codTable+"."+codColumn, codColumn);
+                    changeMap.put("deleted.column."+codTable+"."+codColumn, nameColumn);
                     continue;
                 }
                 // Se encontrar uma table deletada ou uma column, pular o loop
@@ -110,7 +110,7 @@ public class CompareJson {
                 }
                 // Verificando uma mudança na table
                 if (!nameTablesNew.contains(nameTable) && codTablesNew.contains(codTable) && !deleted.contains(codTable)) {
-                    changeMap.put("change.table."+codTable, getCod(newValue,false)[0]);
+                    changeMap.put("change.table."+codTable, getCod(newValue,false)[1]);
                 }
                 // Verificando uma mudança na column
                 if (!nameColumnsNew.contains(nameColumn) && codColumnsNew.contains(codColumn) && !deleted.contains(codColumn)) {
