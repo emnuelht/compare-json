@@ -154,14 +154,10 @@ public class CompareJson {
 
                 if (!tableExists) {
                     changeMap.put("change.new.table." + codTable, nameTable);
-                } else {
-                    changeMap.put("change.table." + codTable, nameTable);
                 }
 
                 if (!columnExists) {
-                    changeMap.put("change.new.column." + codColumn, nameColumn);
-                } else {
-                    changeMap.put("change.column." + codTable + "." + codColumn, nameColumn);
+                    changeMap.put("change.new.column." + codTable + "." + codColumn, nameColumn);
                 }
 
                 // Adicionando o novo valor
@@ -171,8 +167,6 @@ public class CompareJson {
                     if (stringSplit.equals(string)) {
                         if (!columnExists) {
                             changeMap.put("change.new.value." + codTable + "." + string, item);
-                        } else {
-                            changeMap.put("change.value." + codTable + "." + string, item);
                         }
                     }
                 }
