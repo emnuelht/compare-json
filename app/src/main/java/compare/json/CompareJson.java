@@ -131,21 +131,49 @@ public class CompareJson {
         // Verificando novas linhas
         for (String iNew : listNew) {
             if (!listOld.contains(iNew)) {
-                String codTable = getCod(iNew,true)[0];
-                String codColumn = getCod(iNew,true)[1];
-                String nameTable = getCod(iNew,false)[0];
-                String nameColumn = getCod(iNew,false)[1];
-                String nameOption = codColumn+"."+getCod(iNew,false)[2];
-                // Adicionando a nova table
-                changeMap.put("change.new.table."+codTable, nameTable);
-                // Adicionando a nova column
-                changeMap.put("change.new.column."+codColumn, nameColumn);
+                String codTable = getCod(iNew, true)[0];
+                String codColumn = getCod(iNew, true)[1];
+                String nameTable = getCod(iNew, false)[0];
+                String nameColumn = getCod(iNew, false)[1];
+                String nameOption = codColumn + "." + getCod(iNew, false)[2];
+
+                // Verifica se a tabela com esse código já existia
+                boolean tableExists = false;
+                boolean columnExists = false;
+
+                for (String iOld : listOld) {
+                    String oldCodTable = getCod(iOld, true)[0];
+                    String oldCodColumn = getCod(iOld, true)[1];
+                    if (codTable.equals(oldCodTable)) {
+                        tableExists = true;
+                    }
+                    if (codColumn.equals(oldCodColumn)) {
+                        columnExists = true;
+                    }
+                }
+
+                if (!tableExists) {
+                    changeMap.put("change.new.table." + codTable, nameTable);
+                } else {
+                    changeMap.put("change.table." + codTable, nameTable);
+                }
+
+                if (!columnExists) {
+                    changeMap.put("change.new.column." + codColumn, nameColumn);
+                } else {
+                    changeMap.put("change.column." + codTable + "." + codColumn, nameColumn);
+                }
+
                 // Adicionando o novo valor
                 String stringSplit = nameOption.split(":")[0];
                 for (String item : optionValueNew) {
                     String string = item.split(":")[0];
                     if (stringSplit.equals(string)) {
-                        changeMap.put("change.new.value."+codTable+"."+string, item);
+                        if (!columnExists) {
+                            changeMap.put("change.new.value." + codTable + "." + string, item);
+                        } else {
+                            changeMap.put("change.value." + codTable + "." + string, item);
+                        }
                     }
                 }
             }
